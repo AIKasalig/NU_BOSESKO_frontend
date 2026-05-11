@@ -1,5 +1,4 @@
 import React from "react";
-import Card from "./Components/Card";
 import Table from "./Components/Table";
 import { LineChart, Line } from "recharts";
 const App = () => {

@@ -2,7 +2,6 @@ import React, { useState, useRef, useEffect } from "react";
 import axios from "axios";
 import API_BASE_URL from "./config/api";
 function SpeechToText() {
-  const [permission, setPermission] = useState(false);
   const mediaRecorder = useRef(null);
   const [recordingStatus, setRecordingStatus] = useState("inactive");
   const [stream, setStream] = useState(null);
@@ -34,7 +33,6 @@ function SpeechToText() {
           audio: true,
           video: false,
         });
-        setPermission(true);
         setStream(streamData);
       } catch (err) {
         alert(err.message);

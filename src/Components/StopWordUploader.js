@@ -1,10 +1,9 @@
-import React, { useState, useRef } from "react";
+import React, { useRef } from "react";
 import axios from "axios";
 import API_BASE_URL from "../config/api";
 
 const StopWordUploader = () => {
   const fileInputRef = useRef(null);
-  const [message, setMessage] = useState("");
 
   const handleFileInputChange = () => {
     const file = fileInputRef.current.files[0];
@@ -19,8 +18,7 @@ const StopWordUploader = () => {
 
   const handleReset = async () => {
     try{
-        const response = await axios.post(`${API_BASE_URL}/reset_stopwords`);
-        setMessage(response.data.message);
+        await axios.post(`${API_BASE_URL}/reset_stopwords`);
         window.location.reload();
     }
     catch(error){
@@ -33,15 +31,13 @@ const StopWordUploader = () => {
     formData.append("file", file);
 
     try {
-      const response = await axios.post(
+      await axios.post(
         `${API_BASE_URL}/upload_stopwords`,
         formData
       );
-      setMessage(response.data.message);
       document.getElementById("my_modal_3").showModal();
     } catch (error) {
       console.error(error);
-      setMessage("Error uploading stopwords. Please try again");
     }
   };
 
