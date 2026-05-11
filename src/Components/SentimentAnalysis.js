@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import API_BASE_URL from "../config/api";
 import {
   BarChart,
   CartesianGrid,
@@ -16,13 +17,13 @@ const SentimentAnalysis = ({ questionId }) => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8000/responses/${questionId}`
+          `${API_BASE_URL}/responses/${questionId}`
         );
         const data = response.data;
 
         if (data) {
           const sentimentResponse = await axios.post(
-            "http://localhost:8000/get_sentiment",
+            `${API_BASE_URL}/get_sentiment`,
             { texts: data }
           );
           //transform sentiment data

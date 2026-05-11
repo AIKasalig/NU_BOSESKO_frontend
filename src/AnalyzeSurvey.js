@@ -8,6 +8,7 @@ import MostFrequent from "./Components/MostFrequent";
 import StopWordUploader from "./Components/StopWordUploader";
 import SentimentAnalysis from "./Components/SentimentAnalysis";
 import EmotionGraph from "./Components/EmotionGraph";
+import API_BASE_URL from "./config/api";
 
 function AnalyzeSurvey() {
   const [surveys, setSurveys] = useState();
@@ -20,7 +21,7 @@ function AnalyzeSurvey() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("http://localhost:8000/survey");
+        const response = await axios.get(`${API_BASE_URL}/survey`);
         setSurveys(response.data);
       } catch (error) {
         console.error(error);
@@ -32,7 +33,7 @@ function AnalyzeSurvey() {
   const handleSurveyClick = async (surveyId) => {
     try {
       const response = await axios.get(
-        `http://localhost:8000/questionnaires/${surveyId}`
+        `${API_BASE_URL}/questionnaires/${surveyId}`
       );
 
       setQuestions(response.data);

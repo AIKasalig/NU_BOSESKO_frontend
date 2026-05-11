@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import API_BASE_URL from "../config/api";
 import {
   BarChart,
   CartesianGrid,
@@ -36,7 +37,7 @@ function MostFrequent({ questionId }) {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8000/responses/${questionId}`
+          `${API_BASE_URL}/responses/${questionId}`
         );
         setData(response.data);
       } catch (error) {
@@ -50,7 +51,7 @@ function MostFrequent({ questionId }) {
       try {
         if (data) {
           const response = await axios.post(
-            "http://localhost:8000/get_frequent",
+            `${API_BASE_URL}/get_frequent`,
             { texts: data }
           );
           const dataArray = Object.entries(response.data).map(

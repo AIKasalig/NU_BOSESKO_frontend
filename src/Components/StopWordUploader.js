@@ -1,5 +1,6 @@
 import React, { useState, useRef } from "react";
 import axios from "axios";
+import API_BASE_URL from "../config/api";
 
 const StopWordUploader = () => {
   const fileInputRef = useRef(null);
@@ -18,7 +19,7 @@ const StopWordUploader = () => {
 
   const handleReset = async () => {
     try{
-        const response = await axios.post("http://localhost:8000/reset_stopwords");
+        const response = await axios.post(`${API_BASE_URL}/reset_stopwords`);
         setMessage(response.data.message);
         window.location.reload();
     }
@@ -33,7 +34,7 @@ const StopWordUploader = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:8000/upload_stopwords",
+        `${API_BASE_URL}/upload_stopwords`,
         formData
       );
       setMessage(response.data.message);

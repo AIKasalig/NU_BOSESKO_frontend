@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import API_BASE_URL from "../config/api";
 function Thematic({ questionId }) {
   const [data, setData] = useState();
   const [tableData, setTableData] = useState();
@@ -7,7 +8,7 @@ function Thematic({ questionId }) {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8000/responses/${questionId}`
+          `${API_BASE_URL}/responses/${questionId}`
         );
         setData(response.data);
       } catch (error) {
@@ -21,7 +22,7 @@ function Thematic({ questionId }) {
       try {
         if (data) {
           const response = await axios.post(
-            "http://localhost:8000/get_topics",
+            `${API_BASE_URL}/get_topics`,
             { texts: data }
           );
           setTableData(response.data);

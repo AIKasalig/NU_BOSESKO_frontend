@@ -11,6 +11,7 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import axios from "axios";
+import API_BASE_URL from "./config/api";
 function AnalyzeCSV() {
   const [currentPage, setCurrentPage] = useState(0);
   const itemsPerPage= 5;
@@ -51,7 +52,7 @@ function AnalyzeCSV() {
 
     try {
       const response = await axios.post(
-        "http://localhost:8000/analyzecsv",
+        `${API_BASE_URL}/analyzecsv`,
         formData,
         {
           headers: {

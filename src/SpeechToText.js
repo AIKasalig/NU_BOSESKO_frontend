@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import axios from "axios";
+import API_BASE_URL from "./config/api";
 function SpeechToText() {
   const [permission, setPermission] = useState(false);
   const mediaRecorder = useRef(null);
@@ -72,7 +73,7 @@ function SpeechToText() {
 
     try {
       const response = axios.post(
-        "http://localhost:8000/speechtotext",
+        `${API_BASE_URL}/speechtotext`,
         formData,
         {
           headers: {

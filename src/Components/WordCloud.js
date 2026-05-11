@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import API_BASE_URL from "../config/api";
 function WordCloud({ questionId }) {
   const [data, setData] = useState();
   const [imgWordCloud, setImgWordCloud] = useState();
@@ -8,7 +9,7 @@ function WordCloud({ questionId }) {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8000/responses/${questionId}`
+          `${API_BASE_URL}/responses/${questionId}`
         );
         setData(response.data);
       } catch (error) {
@@ -22,7 +23,7 @@ function WordCloud({ questionId }) {
       try {
         if (data) {
           const response = await axios.post(
-            "http://localhost:8000/generate_wordcloud",
+            `${API_BASE_URL}/generate_wordcloud`,
             { texts: data },
             { responseType: "blob" }
           );
